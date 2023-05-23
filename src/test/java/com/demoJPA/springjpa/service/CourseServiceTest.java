@@ -106,7 +106,7 @@ class CourseServiceTest {
 
     @Test
     void canDeleteCourse() {
-        Long id = 2L;
+        String id = "ID";
         Optional<Course> course = Optional.ofNullable(Course.builder().courseId(id)
                 .title("C#")
                 .credit(4)
@@ -121,7 +121,7 @@ class CourseServiceTest {
     void willThrowWhenCourseDoesNotExist() {
 
         //Given
-        Long id = 1L;
+        String id = "ID";
         // when
         given(courseRepository.findById(id)).willReturn(Optional.empty());
 
@@ -136,7 +136,7 @@ class CourseServiceTest {
     }
     @Test
     void canUpdateCourse(){
-        Long id = 2L;
+        String id = "CourseID";
         String newTitle = "New Title";
         int newCredit = 3;
         Optional<Course> course = Optional.ofNullable(Course.builder().courseId(id)
@@ -157,7 +157,7 @@ class CourseServiceTest {
 
     @Test
     void willThrowWhenCreditHasValueGreaterZero(){
-        Long id = 2L;
+        String id = "ID";
         String newTitle = "New Title";
         int newCredit = -1;
         Optional<Course> course = Optional.ofNullable(Course.builder().courseId(id)
@@ -179,7 +179,7 @@ class CourseServiceTest {
     @Test
     void CanGetCourseById(){
         // Arrange
-        Long id = 1L;
+        String id = "id";
 
         Course course = new Course();
         course.setCourseId(id);
