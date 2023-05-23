@@ -6,8 +6,8 @@ import com.demoJPA.springjpa.repository.CourseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class CourseService {
         List<Course> courses = courseRepository.findAll();
         return  courses;
     }
-    public Optional<Course> getCourseById(Long id) {
+    public Optional<Course> getCourseById(String id) {
         Optional<Course> course = courseRepository.findById(id);
         return course;
     }
@@ -37,7 +37,7 @@ public class CourseService {
         courseRepository.save(course);
     }
         @Transactional
-        public void updateCourse(Long id, String title, Integer credit){
+        public void updateCourse(String id, String title, Integer credit){
             Course course = courseRepository.findById(id)
                             .orElseThrow(()->new IllegalStateException("Course with id" + id + "does not exits "));
             if(title != null && title.length()>0 && !Objects.equals(course.getTitle(),title)){
@@ -50,7 +50,7 @@ public class CourseService {
                     course.setCredit(credit);
             }
         }
-    public void deleteCourse(Long id){
+    public void deleteCourse(String id){
         Optional<Course> exist = courseRepository.findById(id);
         if(exist.isEmpty()) {
             throw new BadRequestException("Course with id" + id + "does not exists");

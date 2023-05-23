@@ -26,7 +26,7 @@ public class CourseController {
         return courses;
     }
     @GetMapping(value = "{courseId}")
-    public Optional<Course> getCourseById(@PathVariable Long courseId){
+    public Optional<Course> getCourseById(@PathVariable String courseId){
         Optional<Course> course = courseService.getCourseById(courseId);
         return course;
     }
@@ -36,13 +36,13 @@ public class CourseController {
         courseService.saveCourse(course);
     }
     @PutMapping(value = "/{courseId}")
-    public void updateCourse(@PathVariable Long courseId,
+    public void updateCourse(@PathVariable String courseId,
                        @RequestParam(required = false) String title,
                        @RequestParam(required = false) int credit){
         courseService.updateCourse(courseId,title,credit);
     }
     @DeleteMapping(path = "{courseId}")
-    public void deleteCourse(@PathVariable("courseId") Long courseId){
+    public void deleteCourse(@PathVariable("courseId") String courseId){
         courseService.deleteCourse(courseId);
     }
 

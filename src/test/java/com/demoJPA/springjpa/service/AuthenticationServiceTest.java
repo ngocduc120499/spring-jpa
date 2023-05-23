@@ -39,7 +39,7 @@ class AuthenticationServiceTest {
         JwtRequestModel requestModel = JwtRequestModel.builder()
                 .username("admin@mail.com")
                 .password("password").build();
-        User user = User.builder().userId(1)
+        User user = User.builder()
                     .firstname("firstName")
                     .lastname("lastName")
                     .email("email@email.com")
